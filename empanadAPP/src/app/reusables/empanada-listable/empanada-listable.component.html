@@ -1,35 +1,44 @@
 <mat-card class="empanada-card">
   <mat-card-header>
-    <mat-card-title
-      >({{ empanadaData.id }}) {{ empanadaData.name }}</mat-card-title
+    <mat-card-title>
+        <div class="horizontal-container">
+          <div class="left-content">{{ empanadaData.id }} {{ empanadaData.name }}</div>
+          <div class="numericInput">
+            <div class="button-container">
+              <button
+                mat-stroked-button
+                color="secondary"
+                (click)="decrementValue()"
+                [disabled]="quantity <= 0"
+              >
+                <mat-icon>remove</mat-icon>
+              </button>
+            </div>
+            <input
+              type="number"
+              min="0"
+              [(ngModel)]="quantity"
+              (focusout)="setValue()"
+              class="value-input"
+            />
+            <div class="button-container">
+              <button
+                mat-stroked-button
+                color="secondary"
+                (click)="incrementValue()"
+              >
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </mat-card-title>
+
+    <mat-card-subtitle
+      >${{ empanadaData.price }} - {{ empanadaData.type }}</mat-card-subtitle
     >
-    <mat-card-subtitle>${{ empanadaData.price }} - {{empanadaData.type}}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <p>{{ empanadaData.description }}</p>
-    <div class="numericInput">
-      <div class="button-container">
-        <button
-          mat-stroked-button
-          color="secondary"
-          (click)="decrementValue()"
-          [disabled]="quantity <= 0"
-        >
-          <mat-icon>remove</mat-icon>
-        </button>
-      </div>
-      <input
-        type="number"
-        min="0"
-        [(ngModel)]="quantity"
-        (focusout)="setValue()"
-        class="value-input"
-      />
-      <div class="button-container">
-        <button mat-stroked-button color="secondary" (click)="incrementValue()">
-          <mat-icon>add</mat-icon>
-        </button>
-      </div>
-    </div>
   </mat-card-content>
 </mat-card>

@@ -1,5 +1,21 @@
-<h1>Carne</h1>
-<app-empanada-listable
-  *ngFor="let emp of empanadas"
-  [empanadaData]="emp"
-></app-empanada-listable>
+<h1>Profile</h1>
+
+<div class="container">
+  <div class="left">
+    <div *ngFor="let empanadaType of empanadasTypes()">
+      <h1>{{ empanadaType }}</h1>
+      <app-empanada-listable
+        *ngFor="let empanada of getEmpanadaByType(empanadaType)"
+        [empanadaData]="empanada"
+      ></app-empanada-listable>
+    </div>
+  </div>
+  <div class="right">
+    <!-- Content for the right div -->
+    <h1>Orden</h1>
+    <p>Display individual order</p>
+    <button mat-raised-button color="primary">
+      <mat-icon>save</mat-icon> Save
+    </button>
+  </div>
+</div>

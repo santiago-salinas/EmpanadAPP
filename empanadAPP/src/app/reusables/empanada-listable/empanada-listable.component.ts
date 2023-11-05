@@ -31,5 +31,8 @@ export class EmpanadaListableComponent {
   }
 
   setValue() {
+    if (this.quantity < 0) {
+      this.quantity = 0;
+    }
   }
 }
