@@ -1,7 +1,9 @@
 <mat-card class="empanada-card">
   <mat-card-header>
-    <mat-card-title>{{ empanadaData.name }}</mat-card-title>
-    <mat-card-subtitle>${{ empanadaData.price }}</mat-card-subtitle>
+    <mat-card-title
+      >({{ empanadaData.id }}) {{ empanadaData.name }}</mat-card-title
+    >
+    <mat-card-subtitle>${{ empanadaData.price }} - {{empanadaData.type}}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <p>{{ empanadaData.description }}</p>
