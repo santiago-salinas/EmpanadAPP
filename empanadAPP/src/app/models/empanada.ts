@@ -1,5 +1,3 @@
-import { type } from "os";
-
 export class Empanada {
     name: string;
     price: number;
