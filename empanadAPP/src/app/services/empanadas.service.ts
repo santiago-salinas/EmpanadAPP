@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Empanada } from '../models/empanada';
+import { Profile } from '../models/profile';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,26 @@ export class EmpanadasService {
 
   getEmpanadaByType(type: string): Empanada[] {
     return this.empanadas.filter(empanada => empanada.type === type);
+  }
+
+  guardarPedido(profile: Profile) {
+    // Get existing profiles from local storage or an empty array if it doesn't exist
+    const existingProfilesJSON = localStorage.getItem('profiles');
+    const existingProfiles = existingProfilesJSON ? JSON.parse(existingProfilesJSON) : [];
+
+    // Check if the profile already exists in the array based on some criteria (e.g., profile.name)
+    const existingProfileIndex = existingProfiles.findIndex((p: Profile) => p.name === profile.name);
+
+    if (existingProfileIndex !== -1) {
+      // If the profile exists, update it
+      existingProfiles[existingProfileIndex] = profile;
+    } else {
+      // If the profile doesn't exist, add it to the array
+      existingProfiles.push(profile);
+    }
+
+    // Save the updated profiles array back to local storage
+    localStorage.setItem('profiles', JSON.stringify(existingProfiles));
   }
 
 }

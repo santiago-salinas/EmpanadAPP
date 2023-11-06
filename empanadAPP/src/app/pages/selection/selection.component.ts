@@ -40,6 +40,7 @@ export class SelectionComponent {
 
   guardarPedido(){
     alert(this.profileName);
-    //this.empanadasService.guardarPedido();
+    this.profile.name = this.profileName;
+    this.empanadasService.guardarPedido(this.profile);
   }
 }

@@ -31,6 +31,13 @@
           <td style="text-align: center">{{ tuple.quantity }}</td>
         </tr>
       </tbody>
+      <tbody *ngIf="profile.empanadaList.length === 0">
+        <tr>
+          <td style="text-align: center">0</td>
+          <td style="text-align: left">Agrega empanadas!</td>
+          <td style="text-align: center">0</td>
+        </tr>
+      </tbody>
     </table>
     <br />
     <mat-form-field>
