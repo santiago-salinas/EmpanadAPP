@@ -13,6 +13,7 @@ Please note that this app is currently under development, and we are continuousl
 
 ![image](https://github.com/santiago-salinas/empanadAPP/assets/48341470/477e6bc2-1065-4fe0-bf33-ac5ab2d7e0ec)
 
+![image](https://github.com/santiago-salinas/empanadAPP/assets/48341470/9f485701-06c2-472f-9841-f56046b7de18)
 
 
 
