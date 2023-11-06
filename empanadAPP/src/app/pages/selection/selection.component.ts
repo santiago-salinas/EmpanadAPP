@@ -34,4 +34,18 @@ export class SelectionComponent {
   getProfiles(): Profile[] {
     return this.empanadasService.getProfiles();
   }
+
+  openWhatsapp() {
+    const phoneNumber = localStorage.getItem('phone');
+    const text = localStorage.getItem('profiles');; // Replace with the desired message
+
+    if (phoneNumber) {
+      const whatsappURL = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${text}`;
+      window.open(whatsappURL, '_blank');
+    } else {
+      // Handle the case where the phone number is not found in localStorage
+      alert('Phone number not found in localStorage');
+    }
+  }
+
 }
