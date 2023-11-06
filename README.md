@@ -11,7 +11,8 @@ EmpanadAPP is an in-progress application designed to streamline the empanada ord
 
 Please note that this app is currently under development, and we are continuously working to enhance its functionality and user experience. Stay tuned for updates and new features as we make your empanada ordering experience even better!
 
-![image](https://github.com/santiago-salinas/empanadAPP/assets/48341470/c0657aec-5986-43e7-892e-3ee221ab0bca)
+![image](https://github.com/santiago-salinas/empanadAPP/assets/48341470/477e6bc2-1065-4fe0-bf33-ac5ab2d7e0ec)
+
 
 
 
