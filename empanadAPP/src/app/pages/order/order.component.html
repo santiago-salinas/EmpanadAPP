@@ -1,13 +1,16 @@
-<h1>CREAR PERFIL DE EMPANADAS</h1>
-<h3>Selecciona las empanadas que deseas guardar bajo el nombre</h3>
+<h1>SELECCIONA LOS PERFILES</h1>
+<h3>Selecciona los perfiles de empanadas que deseas utilizar en este pedido</h3>
 
 <div class="container">
   <div class="left">
-    <app-profile-listable
-      *ngFor="let profile of getProfiles()"
-      [profileData]="profile"
-      [pageInject]="activeProfiles"
-    ></app-profile-listable>
+    <div *ngFor="let empanadaType of empanadasTypes()">
+      <h1>{{ empanadaType }}</h1>
+      <app-empanada-listable
+        *ngFor="let empanada of getEmpanadaByType(empanadaType)"
+        [empanadaData]="empanada"
+        [profileInject]="profile"
+      ></app-empanada-listable>
+    </div>
   </div>
   <div class="right">
     <!-- Content for the right div -->
@@ -22,13 +25,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let tuple of empanadaList">
+        <tr *ngFor="let tuple of profile.empanadaList">
           <td style="text-align: center">{{ tuple.empanada.id }}</td>
           <td style="text-align: left">{{ tuple.empanada.name }}</td>
           <td style="text-align: center">{{ tuple.quantity }}</td>
         </tr>
       </tbody>
-      <tbody *ngIf="empanadaList.length === 0">
+      <tbody *ngIf="profile.empanadaList.length === 0">
         <tr>
           <td style="text-align: center">0</td>
           <td style="text-align: left">Agrega empanadas!</td>
@@ -37,12 +40,17 @@
       </tbody>
     </table>
     <br />
+    <mat-form-field>
+      <mat-label>Nombre del perfil</mat-label>
+      <input type="text" matInput [(ngModel)]="profileName" />
+    </mat-form-field>
     <button
       mat-raised-button
-      [disabled]="empanadaList.length === 0"
+      [disabled]="!profileName || profile.empanadaList.length === 0"
       color="warn"
+      (click)="guardarPedido()"
     >
-      <mat-icon>task_alt</mat-icon> Pedir!
+      <mat-icon>save</mat-icon> Guardar
     </button>
   </div>
 </div>

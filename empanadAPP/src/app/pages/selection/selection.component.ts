@@ -10,37 +10,28 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { Profile } from 'src/app/models/profile';
 import {MatTableModule} from '@angular/material/table';
-
-
+import { ProfileListableComponent } from 'src/app/reusables/profile-listable/profile-listable.component';
+interface Tuple {
+  empanada: Empanada;
+  quantity: number;
+}
 @Component({
   selector: 'app-selection',
   templateUrl: './selection.component.html',
   styleUrls: ['./selection.component.scss'],
   standalone: true,
-  imports: [CommonModule,MatTableModule,FormsModule,  RouterLink, RouterLinkActive, RouterOutlet, EmpanadaListableComponent, MatButtonModule, MatIconModule,MatButtonModule, MatIconModule, MatInputModule]
+  imports: [CommonModule,ProfileListableComponent,MatTableModule,FormsModule,  RouterLink, RouterLinkActive, RouterOutlet, EmpanadaListableComponent, MatButtonModule, MatIconModule,MatButtonModule, MatIconModule, MatInputModule]
 })
 
-
 export class SelectionComponent {
-  empanadas : Empanada[];
-  profileName : string = "";
-  profile : Profile = new Profile("", []);
+  empanadaList: Tuple[] = [];
+  activeProfiles: Profile[] = [];
 
   constructor(private empanadasService: EmpanadasService) {
-    this.empanadas = this.empanadasService.getEmpanadas();
+    this.activeProfiles = this.empanadasService.getProfiles();
   }
 
-  empanadasTypes(): string[]{
-    return this.empanadasService.getEmpanadasTypes();
-  }
-
-  getEmpanadaByType(empanadaType : string){
-    return this.empanadasService.getEmpanadaByType(empanadaType);
-  }
-
-  guardarPedido(){
-    alert(this.profileName);
-    this.profile.name = this.profileName;
-    this.empanadasService.guardarPedido(this.profile);
+  getProfiles(): Profile[] {
+    return this.empanadasService.getProfiles();
   }
 }

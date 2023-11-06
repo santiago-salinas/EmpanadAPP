@@ -16,6 +16,12 @@ export class EmpanadasService {
     return this.empanadas;
   }
 
+  getProfiles(): Profile[] {
+    const profilesJSON = localStorage.getItem('profiles');
+    return profilesJSON ? JSON.parse(profilesJSON) : [];
+  }
+
+
   getEmpanadasTypes(): string[] {
     return this.empanadas.map(empanada => empanada.type).filter((value, index, self) => self.indexOf(value) === index);
   }

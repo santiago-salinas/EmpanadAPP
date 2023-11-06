@@ -1,0 +1,37 @@
+<mat-card class="empanada-card">
+  <mat-card-header>
+    <mat-card-title>
+      <div class="horizontal-container">
+        <div class="left-content">
+          {{ profileData.name }}
+        </div>
+
+        <div class="numericInput">Texto</div>
+      </div>
+    </mat-card-title>
+
+    <mat-card-subtitle>
+      Cantidad Empanadas: {{ getTotalQuantity(profileData.empanadaList) }}
+      <br />
+      Precio: ${{ getTotalPrice(profileData.empanadaList) }}
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let empanada of profileData.empanadaList">
+          <td>{{ empanada.empanada.id }}</td>
+          <td>{{ empanada.empanada.name }}</td>
+          <td>{{ empanada.quantity }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card-content>
+</mat-card>
