@@ -45,3 +45,35 @@
     letter-spacing: 2px;
     margin: 20px 0;
   }
+
+  // Table
+
+  /* Apply some basic styling to the table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+/* Style the table header row */
+thead tr {
+  background-color: #f0f0f0;
+}
+
+/* Style the table header cells */
+thead th {
+  text-align: center;
+  padding: 10px;
+  text-align: left;
+}
+
+/* Style the table body rows */
+tbody tr {
+  border-bottom: 1px solid #ccc;
+}
+
+/* Style the table data cells */
+td {
+  padding: 10px;
+  background-color: #f0f0f0;
+}

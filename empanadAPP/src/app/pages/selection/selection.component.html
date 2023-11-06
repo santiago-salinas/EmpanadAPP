@@ -1,4 +1,5 @@
-<h1>Profile</h1>
+<h1>CREAR PERFIL DE EMPANADAS</h1>
+<h3>Selecciona las empanadas que deseas guardar bajo el nombre</h3>
 
 <div class="container">
   <div class="left">
@@ -7,6 +8,7 @@
       <app-empanada-listable
         *ngFor="let empanada of getEmpanadaByType(empanadaType)"
         [empanadaData]="empanada"
+        [profileInject]="profile"
       ></app-empanada-listable>
     </div>
   </div>
@@ -14,8 +16,34 @@
     <!-- Content for the right div -->
     <h1>Orden</h1>
     <p>Display individual order</p>
-    <button mat-raised-button color="primary">
-      <mat-icon>save</mat-icon> Save
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Cant</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tuple of profile.empanadaList">
+          <td style="text-align: center">{{ tuple.empanada.id }}</td>
+          <td style="text-align: left">{{ tuple.empanada.name }}</td>
+          <td style="text-align: center">{{ tuple.quantity }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <mat-form-field>
+      <mat-label>Nombre del perfil</mat-label>
+      <input type="text" matInput [(ngModel)]="profileName" />
+    </mat-form-field>
+    <button
+      mat-raised-button
+      [disabled]="!profileName || profile.empanadaList.length === 0"
+      color="warn"
+      (click)="guardarPedido()"
+    >
+      <mat-icon>save</mat-icon> Guardar
     </button>
   </div>
 </div>

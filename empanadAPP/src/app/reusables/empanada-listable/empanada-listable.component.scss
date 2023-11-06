@@ -11,47 +11,35 @@ input[type=number] {
 }
 
 .empanada-card {
-    width: 600px; /* Adjust the width as needed */
+    width: 600px;
     margin: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
-  /* Style the card content */
-  .mat-card-content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
   .horizontal-container {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content: space-between !important;
     align-items: center;
   }
 
   .left-content {
-    align-items: right;
-    margin-right: 100px;
+    flex: 70%;
+    width: 800px;
   }
 
-  .mat-card-title {
-    display: flex;
-    flex-direction: center;
+  .right-content {
+    width: 100px;
+    flex: 30%;
   }
 
   /* Style the numeric input section */
   .numericInput {
     display: flex;
     flex-direction: row;
-    align-items: left;
     width: 100%;
-    margin-top: 10px;
   }
 
-  .button-container {
-    display: flex;
-    align-items: center;
-  }
 
   .value-input {
     width: 40px;
