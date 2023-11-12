@@ -5,6 +5,11 @@ interface Tuple {
     quantity: number;
 }
 
+export interface TupleProfile {
+    profile: Profile;
+    selected: boolean;
+}
+
 export class Profile {
     name: string;
     empanadaList: Tuple[];
@@ -14,6 +19,7 @@ export class Profile {
         this.empanadaList = empanadaList;
     }
 
+    
     getEmpanadaList(): Tuple[] {
         return this.empanadaList;
     }

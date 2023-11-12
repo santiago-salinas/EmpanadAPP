@@ -5,8 +5,8 @@
   <div class="left">
     <app-profile-listable
       *ngFor="let profile of getProfiles()"
-      [profileData]="profile"
-      [pageInject]="activeProfiles"
+      [profileData]="profile.profile"
+      [isChecked]="profile.selected"
     ></app-profile-listable>
   </div>
   <div class="right">

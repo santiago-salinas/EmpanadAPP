@@ -5,11 +5,14 @@
   <div class="left">
     <div *ngFor="let empanadaType of empanadasTypes()">
       <h1>{{ empanadaType }}</h1>
-      <app-empanada-listable
-        *ngFor="let empanada of getEmpanadaByType(empanadaType)"
-        [empanadaData]="empanada"
-        [profileInject]="profile"
-      ></app-empanada-listable>
+      <div *ngFor="let empanadaType of empanadasTypes()">
+        <h1>{{ empanadaType }}</h1>
+        <app-empanada-listable
+          *ngFor="let empanada of getEmpanadaByType(empanadaType)"
+          [empanadaData]="empanada"
+          [profileInject]="profile"
+        ></app-empanada-listable>
+      </div>
     </div>
   </div>
   <div class="right">

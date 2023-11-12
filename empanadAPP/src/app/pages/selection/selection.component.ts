@@ -1,38 +1,75 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { EmpanadaListableComponent } from 'src/app/reusables/empanada-listable/empanada-listable.component';
-import { Empanada } from 'src/app/models/empanada';
-import { EmpanadasService } from 'src/app/services/empanadas.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import { Profile } from 'src/app/models/profile';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
+import { RouterModule } from '@angular/router'; // Assuming you're using Angular Router
+
+import { EmpanadaListableComponent } from 'src/app/reusables/empanada-listable/empanada-listable.component';
 import { ProfileListableComponent } from 'src/app/reusables/profile-listable/profile-listable.component';
+import { Empanada } from 'src/app/models/empanada';
+import { EmpanadasService } from 'src/app/services/empanadas.service';
+import { Profile } from 'src/app/models/profile';
+
 interface Tuple {
   empanada: Empanada;
   quantity: number;
 }
+
+interface TupleProfile {
+  profile: Profile;
+  selected: boolean;
+}
+
 @Component({
   selector: 'app-selection',
   templateUrl: './selection.component.html',
   styleUrls: ['./selection.component.scss'],
   standalone: true,
-  imports: [CommonModule,ProfileListableComponent,MatTableModule,FormsModule,  RouterLink, RouterLinkActive, RouterOutlet, EmpanadaListableComponent, MatButtonModule, MatIconModule,MatButtonModule, MatIconModule, MatInputModule]
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule, // Add RouterModule if you're using Angular Router
+    MatButtonModule,
+    MatIconModule,
+    MatInputModule,
+    MatTableModule,
+    EmpanadaListableComponent,
+    ProfileListableComponent,
+  ],
 })
 
 export class SelectionComponent {
   empanadaList: Tuple[] = [];
-  activeProfiles: Profile[] = [];
+  fakeProfile: Profile = new Profile('', []);
+  allProfiles: TupleProfile[] = [];
 
   constructor(private empanadasService: EmpanadasService) {
-    this.activeProfiles = this.empanadasService.getProfiles();
+    this.empanadasService.resetActiveProfiles();
+    this.allProfiles = this.empanadasService.getProfiles().map(profile => ({
+      profile,
+      selected: false
+    }));
   }
 
-  getProfiles(): Profile[] {
-    return this.empanadasService.getProfiles();
+
+  getProfiles(): TupleProfile[] {
+    this.onActiveProfileChanged();
+    return this.allProfiles;
+  }
+
+  onActiveProfileChanged() {
+    console.log(this.empanadaList);
+    this.empanadaList = [];
+    //Get active profiles
+    const activeProfiles = this.empanadasService.getActiveProfiles();
+    console.log(activeProfiles);
+    
+    //Get empanadas from active profiles group by id sum quantity
+    const empanadas = activeProfiles
+    
   }
 
   openWhatsapp() {
