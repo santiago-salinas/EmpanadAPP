@@ -76,5 +76,23 @@ export class EmpanadasService {
     // Save the updated profiles array back to local storage
     localStorage.setItem('profiles', JSON.stringify(existingProfiles));
   }
+  
+  deleteProfile(profile: Profile) {
+    alert("delete")
+    // Get existing profiles from local storage or an empty array if it doesn't exist
+    const existingProfilesJSON = localStorage.getItem('profiles');
+    const existingProfiles = existingProfilesJSON ? JSON.parse(existingProfilesJSON) : [];
+
+    // Check if the profile already exists in the array based on some criteria (e.g., profile.name)
+    const existingProfileIndex = existingProfiles.findIndex((p: Profile) => p.name === profile.name);
+
+    if (existingProfileIndex !== -1) {
+      // If the profile exists, update it
+      existingProfiles.splice(existingProfileIndex,1);
+    }
+
+    // Save the updated profiles array back to local storage
+    localStorage.setItem('profiles', JSON.stringify(existingProfiles));
+  }
 
 }

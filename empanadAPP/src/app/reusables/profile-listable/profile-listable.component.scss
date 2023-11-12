@@ -19,18 +19,19 @@ input[type=number] {
   .horizontal-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between !important;
     align-items: center;
   }
 
   .left-content {
-    flex: 70%;
-    width: 800px;
+    flex: 1;
+    max-width: 70%;
   }
-
+  
   .right-content {
-    width: 100px;
-    flex: 30%;
+    flex: 1;
+    max-width: 30%;
+    display: flex;
+    justify-content: flex-end;
   }
 
   /* Style the numeric input section */

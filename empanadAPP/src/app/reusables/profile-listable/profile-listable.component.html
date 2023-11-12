@@ -3,8 +3,22 @@
     <mat-card-title>
       <div class="horizontal-container">
         <div class="left-content">
-          <input type="checkbox" [checked]="isChecked" (change)="onChanged($event)" (blur)="onBlur($event)">
+          <input
+            type="checkbox"
+            [checked]="isChecked"
+            (change)="onChanged($event)"
+            (blur)="onBlur($event)"
+          />
           {{ profileData.name }}
+        </div>
+        <div class="right-content">
+          <!-- Add Edit and Delete buttons here -->
+          <button mat-icon-button>
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="deleteProfile()">
+            <mat-icon>delete</mat-icon>
+          </button>
         </div>
       </div>
     </mat-card-title>

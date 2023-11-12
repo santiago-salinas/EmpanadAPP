@@ -98,6 +98,11 @@ export class SelectionComponent {
     } else {
       // Handle the case where the phone number is not found in localStorage
       alert('Phone number not found in localStorage');
+      //Ask for number
+      const phone = prompt('Please enter business phone number +598 xx xxx xxx', '');
+      if (phone != null) {
+        localStorage.setItem("phone", "598".concat(phone));
+      }
     }
   }
 

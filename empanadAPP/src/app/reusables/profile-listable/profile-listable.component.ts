@@ -9,8 +9,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Profile } from 'src/app/models/profile';
 import { EmpanadasService } from 'src/app/services/empanadas.service';
-
-
 @Component({
   selector: 'app-profile-listable',
   templateUrl: './profile-listable.component.html',
@@ -51,5 +49,10 @@ export class ProfileListableComponent {
     console.log("Before"+this.isChecked);
     this.isChecked = $event && $event.target && $event.target.checked;
     console.log("After"+this.isChecked);
+  }
+
+  deleteProfile(){
+    this.empanadasService.deleteProfile(this.profileData);
+    window.location.reload();
   }
 }
