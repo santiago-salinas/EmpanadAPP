@@ -67,14 +67,30 @@ export class SelectionComponent {
     const activeProfiles = this.empanadasService.getActiveProfiles();
     console.log(activeProfiles);
     
-    //Get empanadas from active profiles group by id sum quantity
-    const empanadas = activeProfiles
+    //Get empanadasList from every profile, and add them to the empanadaList, group by id, add to the quantity if its already in the list
+    activeProfiles.forEach(profile => {
+      profile.empanadaList.forEach(empanada => {
+        const existingEmpanada = this.empanadaList.find(item => item.empanada.id === empanada.empanada.id);
     
+        if (existingEmpanada) {
+          // If the empanada already exists, update the quantity
+          existingEmpanada.quantity += empanada.quantity;
+        } else {
+          // If the empanada doesn't exist, add a deep copy to the empanadaList
+          this.empanadaList.push(this.deepCopy(empanada));
+        }
+      });
+    });
+    this.updateListOrder();
+  }
+
+  deepCopy(obj: any): any {
+    return JSON.parse(JSON.stringify(obj));
   }
 
   openWhatsapp() {
     const phoneNumber = localStorage.getItem('phone');
-    const text = localStorage.getItem('profiles');; // Replace with the desired message
+    const text = this.getFormattedText();
 
     if (phoneNumber) {
       const whatsappURL = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${text}`;
@@ -85,4 +101,32 @@ export class SelectionComponent {
     }
   }
 
+  updateListOrder() {
+    // Sort the empanadaList based on quantity and then by ID
+    this.empanadaList.sort((a, b) => {
+      // Sort by quantity in descending order (highest quantity first)
+      if (a.quantity > b.quantity) return -1;
+      if (a.quantity < b.quantity) return 1;
+      // If quantities are equal, sort by ID in ascending order
+      if (a.empanada.id < b.empanada.id) return -1;
+      if (a.empanada.id > b.empanada.id) return 1;
+
+      return 0;
+    });
+  }
+
+  getFormattedText(): string {
+    let result = '';
+
+    this.empanadaList.forEach((tuple, index) => {
+      const { empanada, quantity } = tuple;
+      result += `${quantity} ${empanada.name} (n°${empanada.id})`;
+
+      if (index < this.empanadaList.length - 1) {
+        result += '%0A'; // Add a newline if it's not the last entry
+      }
+    });
+
+    return result;
+  }
 }
