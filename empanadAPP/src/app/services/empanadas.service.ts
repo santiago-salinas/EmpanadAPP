@@ -33,6 +33,16 @@ export class EmpanadasService {
     return this.activeProfiles
   }
 
+  getProfileByName(name: string): Profile {
+    //If get profile is null return new Profile
+    const profile = this.getProfiles().find(profile => profile.name === name);
+    if (profile) {
+      return profile;
+    }else {
+      return new Profile(name, []);
+    }
+  }
+
   addActiveProfile(profile: Profile) {
     const existingProfile = this.activeProfiles.find(item => item.name === profile.name);
 
@@ -94,5 +104,4 @@ export class EmpanadasService {
     // Save the updated profiles array back to local storage
     localStorage.setItem('profiles', JSON.stringify(existingProfiles));
   }
-
 }

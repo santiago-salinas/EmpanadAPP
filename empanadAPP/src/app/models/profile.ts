@@ -58,5 +58,12 @@ export class Profile {
         });
       }
 
+      getEmpanadaQuantity(empanadaData : Empanada): number{
+        const existingEmpanada = this.empanadaList.find(item => item.empanada.id === empanadaData.id);
+        if (existingEmpanada) {
+          return existingEmpanada.quantity;
+        }
+        return 0;
+      }
 }
 

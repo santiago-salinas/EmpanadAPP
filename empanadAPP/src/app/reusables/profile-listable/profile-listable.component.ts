@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Profile } from 'src/app/models/profile';
 import { EmpanadasService } from 'src/app/services/empanadas.service';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-profile-listable',
   templateUrl: './profile-listable.component.html',
@@ -20,7 +21,7 @@ export class ProfileListableComponent {
   @Input() profileData: Profile = new Object() as Profile;
   @Input() isChecked = false;
 
-  constructor(private cdr: ChangeDetectorRef,private empanadasService: EmpanadasService) {
+  constructor(private cdr: ChangeDetectorRef,private empanadasService: EmpanadasService, private router: Router) {
   }
 
   getTotalQuantity(empanadaList: any[]): number {
@@ -54,5 +55,9 @@ export class ProfileListableComponent {
   deleteProfile(){
     this.empanadasService.deleteProfile(this.profileData);
     window.location.reload();
+  }
+
+  editProfile(){
+    this.router.navigate(['/order'], { queryParams: { profileName: this.profileData.name } });
   }
 }
