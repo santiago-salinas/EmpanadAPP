@@ -32,7 +32,6 @@ export class OrderComponent {
   }
 
   ngOnInit() {
-    this.empanadas = this.empanadasService.getEmpanadas();
     // Subscribe to query params to get the profileName from the URL
     this.route.queryParams.subscribe(params => {
       this.profileName = params['profileName'];

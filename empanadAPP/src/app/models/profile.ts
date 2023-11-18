@@ -25,24 +25,25 @@ export class Profile {
     }
 
     addEmpanada(empanada: Empanada, quantity: number) {
-        const existingEmpanada = this.empanadaList.find(item => item.empanada.id === empanada.id);
-
+        const existingEmpanadaIndex = this.empanadaList.findIndex(item => item.empanada.id === empanada.id);
+      
         if (quantity === 0) {
-            // Remove the empanada from the list if the quantity is zero
-            if (existingEmpanada) {
-                this.empanadaList = this.empanadaList.filter(item => item.empanada.id !== empanada.id);
-            }
+          // Remove the empanada from the list if the quantity is zero
+          if (existingEmpanadaIndex !== -1) {
+            this.empanadaList.splice(existingEmpanadaIndex, 1);
+          }
         } else {
-            if (existingEmpanada) {
-                // If the empanada already exists in the list, modify the quantity
-                existingEmpanada.quantity = quantity;
-            } else {
-                // If the empanada doesn't exist, add it to the list
-                this.empanadaList.push({ empanada, quantity });
-            }
+          if (existingEmpanadaIndex !== -1) {
+            // If the empanada already exists in the list, modify the quantity
+            this.empanadaList[existingEmpanadaIndex].quantity = quantity;
+          } else {
+            // If the empanada doesn't exist, add it to the list
+            this.empanadaList.push({ empanada, quantity });
+          }
         }
-        this.updateListOrder();
-    }
+      
+        console.log(this.empanadaList);
+      }
 
     updateListOrder() {
         // Sort the empanadaList based on quantity and then by ID

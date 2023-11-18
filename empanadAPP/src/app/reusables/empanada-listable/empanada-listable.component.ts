@@ -40,8 +40,8 @@ export class EmpanadaListableComponent {
   decrementValue() {
     if (this.quantity > 0) {
       this.quantity--;
-      this.updateListQuantity();
     }
+    this.updateListQuantity();
   }
 
   incrementValue() {
