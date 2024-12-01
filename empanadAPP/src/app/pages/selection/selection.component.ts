@@ -92,6 +92,8 @@ export class SelectionComponent {
     const phoneNumber = localStorage.getItem('phone');
     const text = this.getFormattedText();
 
+    console.log('Formatted Text:', text);
+    
     if (phoneNumber) {
       const whatsappURL = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${text}`;
       window.open(whatsappURL, '_blank');
