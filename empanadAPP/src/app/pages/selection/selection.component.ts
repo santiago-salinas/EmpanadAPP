@@ -91,8 +91,10 @@ export class SelectionComponent {
   openWhatsapp() {
     const phoneNumber = localStorage.getItem('phone');
     const text = this.getFormattedText();
+    const text2 = this.getFormattedText2();
 
     console.log('Formatted Text:', text);
+    console.log(text2);
     
     if (phoneNumber) {
       const whatsappURL = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${text}`;
@@ -136,4 +138,19 @@ export class SelectionComponent {
 
     return result;
   }
+
+  getFormattedText2(): string {
+  let result = '';
+
+  this.empanadaList.forEach((tuple, index) => {
+    const { empanada, quantity } = tuple;
+    result += `${quantity} ${empanada.name} (n°${empanada.id})`;
+
+    if (index < this.empanadaList.length - 1) {
+      result += ', '; // Separate entries with a comma and space
+    }
+  });
+
+  return result;
+}
 }
